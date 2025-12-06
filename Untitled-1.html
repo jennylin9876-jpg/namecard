@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J | AI Fintech Expert</title>
+    <meta name="description" content="Empowering Business with Intelligence - J 的個人品牌網頁">
+    
+    <!-- Google Fonts: Noto Sans TC for readability, JetBrains Mono for code elements -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Config for Custom Colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#1A1A1A', // Primary
+                        titanium: '#8C8C8C', // Secondary
+                        quiet: '#D9D9D9',    // Accent
+                        cyber: '#0d1117',    // Footer BG
+                        neon: '#0f0',        // Cyberpunk Neon
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans TC"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    boxShadow: {
+                        'card': '0 10px 30px -5px rgba(0, 0, 0, 0.1)',
+                        'neon': '0 0 10px #0f0, 0 0 20px #0f0',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Business Card Effect */
+        .business-card {
+            background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+            border: 1px solid #e5e5e5;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .business-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-color: #1A1A1A;
+        }
+        .business-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* Cyberpunk Glitch & Matrix Effects */
+        .cyber-text {
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 1px;
+        }
+        
+        .matrix-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .matrix-btn:hover {
+            background-color: rgba(0, 255, 0, 0.1);
+            border-color: #0f0;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+            text-shadow: 0 0 5px #0f0;
+            color: #0f0;
+        }
+
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: rgba(0, 255, 0, 0.3);
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: scan 2s linear infinite;
+            display: none;
+        }
+        
+        .matrix-btn:hover .scanline {
+            display: block;
+        }
+
+        @keyframes scan {
+            0% { top: 0%; }
+            100% { top: 100%; }
+        }
+
+        /* Mobile Menu Transition */
+        #mobile-menu {
+            transition: max-height 0.3s ease-in-out;
+            max-height: 0;
+            overflow: hidden;
+        }
+        #mobile-menu.open {
+            max-height: 300px;
+        }
+    </style>
+</head>
+<body class="bg-white text-obsidian font-sans antialiased selection:bg-titanium selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="font-bold text-2xl tracking-tighter border-2 border-obsidian px-3 py-1">J.</span>
+                </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#about" class="text-titanium hover:text-obsidian transition-colors text-sm font-medium tracking-wide">關於 J</a>
+                    <a href="#solutions" class="text-titanium hover:text-obsidian transition-colors text-sm font-medium tracking-wide">AI 解決方案</a>
+                    <a href="#portfolio" class="text-titanium hover:text-obsidian transition-colors text-sm font-medium tracking-wide">實戰案例</a>
+                    <a href="#contact" class="bg-obsidian text-white px-5 py-2 text-sm hover:bg-gray-800 transition-colors">預約諮詢</a>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-btn" class="text-obsidian hover:text-titanium focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="md:hidden bg-white border-b border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+                <a href="#about" class="block px-3 py-2 text-titanium hover:text-obsidian">關於 J</a>
+                <a href="#solutions" class="block px-3 py-2 text-titanium hover:text-obsidian">AI 解決方案</a>
+                <a href="#portfolio" class="block px-3 py-2 text-titanium hover:text-obsidian">實戰案例</a>
+                <a href="#contact" class="block px-3 py-2 text-obsidian font-bold">預約諮詢</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section: The Business Card -->
+    <section class="relative h-screen flex items-center justify-center bg-white overflow-hidden">
+        <!-- Abstract Background Elements -->
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-quiet opacity-20 -skew-x-12 transform translate-x-20"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-titanium opacity-10 rounded-full blur-3xl"></div>
+
+        <div class="relative z-10 max-w-4xl w-full px-4">
+            <!-- The Card -->
+            <div class="business-card bg-white p-10 md:p-16 shadow-2xl max-w-3xl mx-auto transform transition-all">
+                <div class="grid md:grid-cols-2 gap-10 items-center">
+                    <div>
+                        <p class="text-titanium text-sm uppercase tracking-[0.2em] mb-2">Fintech & AI Engineer</p>
+                        <h1 class="text-5xl md:text-6xl font-bold text-obsidian mb-6">J. <span class="text-titanium text-2xl md:text-3xl font-light block mt-2">Data Analyst</span></h1>
+                        <div class="h-1 w-20 bg-obsidian mb-6"></div>
+                        <p class="text-gray-600 leading-relaxed mb-8">
+                            數據分析 | Prompt Engineering | 自動化
+                        </p>
+                        <div class="flex space-x-4 text-2xl text-titanium">
+                            <i class="fab fa-python hover:text-obsidian transition-colors" title="Python"></i>
+                            <i class="fas fa-database hover:text-obsidian transition-colors" title="Data"></i>
+                            <i class="fas fa-chart-line hover:text-obsidian transition-colors" title="Analytics"></i>
+                        </div>
+                    </div>
+                    <div class="flex flex-col justify-center items-start md:items-end text-left md:text-right">
+                        <h2 class="text-3xl font-serif italic text-obsidian mb-4">"Empowering Business<br>with Intelligence"</h2>
+                        <div class="text-sm text-gray-500 space-y-1 font-mono">
+                            <p>EST. 202X</p>
+                            <p>Taipei, Taiwan</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-titanium">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row gap-12 items-start">
+                <div class="w-full md:w-1/3">
+                    <h3 class="text-obsidian text-3xl font-bold mb-6 border-l-4 border-obsidian pl-4">關於我</h3>
+                    <div class="bg-white p-6 shadow-card">
+                        <ul class="space-y-4 text-sm text-gray-600">
+                            <li class="flex justify-between border-b pb-2"><span>姓名</span> <span class="font-bold text-obsidian">J</span></li>
+                            <li class="flex justify-between border-b pb-2"><span>年資</span> <span class="font-bold text-obsidian">3 年 (AI 工程師)</span></li>
+                            <li class="flex justify-between border-b pb-2"><span>專注</span> <span class="font-bold text-obsidian">金融科技 / 數據分析</span></li>
+                            <li class="flex justify-between"><span>技術</span> <span class="font-bold text-obsidian">Python, Excel, R</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="w-full md:w-2/3">
+                    <h4 class="text-xl font-bold mb-4 text-obsidian">數據與洞察的橋樑</h4>
+                    <p class="text-gray-600 leading-8 mb-6 text-justify">
+                        身為金融科技領域的新銳力量，我專注於將冰冷的數據轉化為具體的商業價值。在瞬息萬變的數位浪潮中，我深信「技術是手段，決策優化才是目的」。儘管是職場新鮮人，但我擁有深厚的數據分析底蘊與敏銳的市場嗅覺，擅長運用 Python 與 R 語言進行複雜的資料解構，並透過高效率的 Prompt Engineering 與工作流自動化，解決傳統作業中的痛點。
+                    </p>
+                    <p class="text-gray-600 leading-8 text-justify">
+                        我的熱情在於拆解問題，將繁雜的營運數據轉化為清晰的可視化圖表，為企業提供具備邏輯與前瞻性的策略依據。我致力於成為技術與商業之間的翻譯者，以專業、創新且值得信賴的態度，協助合作夥伴在數據洪流中站穩腳步，實現精準增長。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Solutions Section -->
+    <section id="solutions" class="py-24 bg-white relative">
+        <!-- Background Decor -->
+        <div class="absolute right-0 top-20 w-64 h-full bg-gray-50 -z-10"></div>
+
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-titanium uppercase tracking-widest text-sm font-bold">Services</span>
+                <h2 class="text-4xl font-bold text-obsidian mt-2">AI 解決方案</h2>
+                <p class="text-gray-500 mt-4 max-w-2xl mx-auto">智能賦能，重塑商業效率。不僅是技術實作，更強調賦能業務流程。</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Tech Services -->
+                <div class="group hover:bg-obsidian hover:text-white transition-all duration-500 p-8 border border-gray-100 shadow-lg bg-white">
+                    <div class="w-12 h-12 bg-gray-100 group-hover:bg-gray-800 flex items-center justify-center mb-6 transition-colors">
+                        <i class="fas fa-code text-xl group-hover:text-white text-obsidian"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">技術賦能服務</h3>
+                    <ul class="space-y-3 text-gray-600 group-hover:text-gray-300">
+                        <li class="flex items-center"><i class="fas fa-check mr-3 text-xs"></i> AI 動態程式碼生成</li>
+                        <li class="flex items-center"><i class="fas fa-check mr-3 text-xs"></i> 自動化數據處理工作流</li>
+                        <li class="flex items-center"><i class="fas fa-check mr-3 text-xs"></i> 互動式視覺儀表板</li>
+                    </ul>
+                </div>
+
+                <!-- Strategic Services -->
+                <div class="group hover:bg-obsidian hover:text-white transition-all duration-500 p-8 border border-gray-100 shadow-lg bg-white">
+                    <div class="w-12 h-12 bg-gray-100 group-hover:bg-gray-800 flex items-center justify-center mb-6 transition-colors">
+                        <i class="fas fa-chess-knight text-xl group-hover:text-white text-obsidian"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">專業規劃顧問</h3>
+                    <ul class="space-y-3 text-gray-600 group-hover:text-gray-300">
+                        <li class="flex items-center"><i class="fas fa-check mr-3 text-xs"></i> 營運效率診斷</li>
+                        <li class="flex items-center"><i class="fas fa-check mr-3 text-xs"></i> 商業趨勢與市場洞察</li>
+                        <li class="flex items-center"><i class="fas fa-check mr-3 text-xs"></i> 行銷策略優化與行動方案</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio / Open Source Section -->
+    <section id="portfolio" class="py-24 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-obsidian mb-12 border-l-4 border-titanium pl-4">開源貢獻 & 技術資源</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-white p-6 shadow-sm hover:shadow-card transition-all border-t-4 border-gray-200 hover:border-obsidian group">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="p-3 bg-gray-100 rounded-lg group-hover:bg-obsidian group-hover:text-white transition-colors">
+                            <i class="fas fa-gamepad text-xl"></i>
+                        </div>
+                        <a href="#" class="text-gray-400 hover:text-obsidian"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">1A2B 猜數字遊戲</h3>
+                    <p class="text-sm text-gray-500 mb-4 font-mono">#Gemini2.5 #WebGame</p>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        基於 Gemini 2.5 模型，以自然語言生成具有視覺回饋的網頁遊戲。展現 LLM 在邏輯遊戲中的應用潛力。
+                    </p>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-white p-6 shadow-sm hover:shadow-card transition-all border-t-4 border-gray-200 hover:border-obsidian group">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="p-3 bg-gray-100 rounded-lg group-hover:bg-obsidian group-hover:text-white transition-colors">
+                            <i class="fas fa-chart-pie text-xl"></i>
+                        </div>
+                        <a href="#" class="text-gray-400 hover:text-obsidian"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">SmartSum 工具整合器</h3>
+                    <p class="text-sm text-gray-500 mb-4 font-mono">#Python #DataViz</p>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        整合 ChatGPT 與 Gemini，使用 HTTP 協議與 Python 構建。專注於 AI 自動摘要生成與複雜數據的視覺化分析。
+                    </p>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="bg-white p-6 shadow-sm hover:shadow-card transition-all border-t-4 border-gray-200 hover:border-obsidian group">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="p-3 bg-gray-100 rounded-lg group-hover:bg-obsidian group-hover:text-white transition-colors">
+                            <i class="fas fa-plane-departure text-xl"></i>
+                        </div>
+                        <a href="#" class="text-gray-400 hover:text-obsidian"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Wander Note</h3>
+                    <p class="text-sm text-gray-500 mb-4 font-mono">#TravelTech #Planner</p>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        智慧旅遊規劃助手。可快速生成客製化旅遊行程，並內建記帳與預算管理功能，解決旅行規劃的痛點。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section: Cyberpunk Style -->
+    <section id="contact" class="bg-cyber py-20 text-gray-400 font-mono relative overflow-hidden border-t-4 border-titanium">
+        <!-- Decoration: Grid Background -->
+        <div class="absolute inset-0 z-0 opacity-10" 
+             style="background-image: linear-gradient(#1a1a1a 1px, transparent 1px), linear-gradient(90deg, #1a1a1a 1px, transparent 1px); background-size: 20px 20px;">
+        </div>
+
+        <div class="max-w-3xl mx-auto px-6 relative z-10 text-center">
+            <div class="mb-8">
+                <i class="fas fa-pen-nib text-4xl mb-4 text-gray-500 animate-pulse"></i>
+                <h2 class="text-2xl text-white tracking-widest cyber-text">&lt;INITIATE_CONTACT /&gt;</h2>
+                <p class="text-sm mt-2 text-gray-500">System Ready. Waiting for user input...</p>
+            </div>
+
+            <!-- The Cyber Button -->
+            <div class="my-10">
+                <a href="#" onclick="triggerHackEffect(this, event)" class="matrix-btn inline-block border border-gray-600 text-gray-300 px-8 py-4 rounded-sm bg-black/50 hover:border-neon hover:text-neon transition-all duration-300 group select-none">
+                    <span class="relative z-10 flex items-center gap-3">
+                        <span class="text-lg font-bold cyber-text" id="btn-text">&gt; Execute_Connection_Protocol.exe</span>
+                        <i class="fas fa-terminal text-sm"></i>
+                    </span>
+                    <div class="scanline"></div>
+                </a>
+            </div>
+
+            <!-- Dependencies (Socials) -->
+            <div class="mt-16 pt-8 border-t border-gray-800 text-left">
+                <h4 class="text-xs text-gray-600 uppercase mb-4 tracking-widest">External_Dependencies:</h4>
+                <div class="flex flex-col sm:flex-row gap-4 sm:gap-8 text-sm">
+                    <a href="#" class="hover:text-white transition-colors flex items-center group">
+                        <span class="text-purple-500 mr-2">import</span> GitHub <span class="text-gray-600 ml-1 group-hover:text-gray-400">// Check repositories</span>
+                    </a>
+                    <a href="#" class="hover:text-white transition-colors flex items-center group">
+                        <span class="text-blue-500 mr-2">import</span> LinkedIn <span class="text-gray-600 ml-1 group-hover:text-gray-400">// Professional network</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-xs text-gray-700 text-center">
+                <p>Copyright © 202X J. System Version 1.0.4</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('open');
+        });
+
+        // Close mobile menu when link is clicked
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('open');
+            });
+        });
+
+        // Matrix / Hacker Effect for the button
+        function triggerHackEffect(element, event) {
+            event.preventDefault(); // Prevent jump for demo
+            
+            const originalText = "> Execute_Connection_Protocol.exe";
+            const targetText = "點擊預約 [ACCESS GRANTED]";
+            const btnTextElement = document.getElementById('btn-text');
+            const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@#$%^&*";
+            
+            let iteration = 0;
+            let interval = null;
+
+            clearInterval(interval);
+            
+            // Phase 1: Decoding Animation
+            interval = setInterval(() => {
+                btnTextElement.innerText = originalText
+                    .split("")
+                    .map((letter, index) => {
+                        if (index < iteration) {
+                            return originalText[index];
+                        }
+                        return characters[Math.floor(Math.random() * 26)];
+                    })
+                    .join("");
+                
+                if (iteration >= originalText.length) {
+                    clearInterval(interval);
+                    // Phase 2: Show Success Message
+                    setTimeout(() => {
+                        btnTextElement.innerText = targetText;
+                        btnTextElement.style.color = "#0f0";
+                        // Real link action would go here: window.location.href = 'your-link';
+                    }, 300);
+                }
+                
+                iteration += 1 / 3;
+            }, 30);
+        }
+    </script>
+</body>
+</html>
